@@ -10,7 +10,7 @@ app.use(express.json());
 
 // MongoDB Connection
 mongoose
-  .connect("mongodb://localhost:27017/jobapp")
+  .connect("mongodb+srv://vikasroy1307:wbqHSg0Cnl3N4kq1@cluster0.j7cvvml.mongodb.net/") // connection 
   .then(() => console.log("Connection with Database established successfully"))
   .catch((err) => console.log("ERROR CONNECTING WITH DATABASE", err));
 

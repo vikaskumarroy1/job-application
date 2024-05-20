@@ -2,19 +2,26 @@
 const JobModel = require("../models/job");
 
 const createJob = async (req, res) => {
-  const jobObj = req.body;
-  const newJob = new JobModel(jobObj);
-  const newlySavedJob = await newJob.save();
-  console.log(newlySavedJob);
-  //   console.log(req.body);
-  res.json({
-    success: true,
-    message: "Job created successfully",
-    jobId: newlySavedJob._id,
-  });
-};
+    try {
+      const jobObj = req.body;
+      const newJob = new JobModel(jobObj);
+      const newlySavedJob = await newJob.save();
+      // console.log(newlySavedJob);
+      //   console.log(req.body);
+      res.json({
+        success: true,
+        message: "Job created successfully",
+        jobId: newlySavedJob._id,
+      });
+    } catch (err) {
+      res.json({
+        success: false,
+        message: "Something went wrong, please try again after sometime",
+      });
+    }
+  };
 
-const listJob = async (req, res) => {
+  const listJob = async (req, res) => {
     try {
       const { minSalary, maxSalary } = req.query;
       const jobsList = await JobModel.find({
